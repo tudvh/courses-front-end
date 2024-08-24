@@ -1,0 +1,15 @@
+{
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "login": {
+      "title": "Login",
+      "submit": "Submit"
+    }
+  },
+  "site": {
+    "home": {
+      "title": "Developing..."
+    }
+  }
+}
