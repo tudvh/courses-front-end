@@ -1,0 +1,15 @@
+{
+  "auth": {
+    "email": "Email",
+    "password": "Mật khẩu",
+    "login": {
+      "title": "Đăng nhập Admin",
+      "submit": "Đăng nhập"
+    }
+  },
+  "site": {
+    "home": {
+      "title": "Đang phát triển..."
+    }
+  }
+}
