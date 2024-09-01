@@ -9,17 +9,13 @@ import { LayoutProps } from '@/types'
 
 const AdminLayout = (props: LayoutProps) => {
   const { children } = props
-  const { isAdminAuth, adminUserData } = useAdminAuth()
+  const { isAdminAuth } = useAdminAuth()
 
   useEffect(() => {
     if (!isAdminAuth) {
       redirect('/admin/auth/login')
     }
   }, [isAdminAuth])
-
-  if (!adminUserData) {
-    return null
-  }
 
   return (
     <div className="h-dvh w-dvw">

@@ -2,13 +2,13 @@ import { ReactNode, TableHTMLAttributes } from 'react'
 
 import { Pagination } from '@/components/ui'
 import { cn } from '@/lib/utils'
-import { TOnChangePage, TSetPagination, TTableColumn } from '@/types'
+import { TOnChangePage, TPagination, TTableColumn } from '@/types'
 
 export type TableProps<T> = {
   columns?: TTableColumn<T>[]
   handleChangePage?: TOnChangePage
   rows?: T[]
-  pagination?: TSetPagination
+  pagination?: TPagination
   onRowClick?: (data: T) => void
   showHeader?: boolean
   customNullDataText?: string | ReactNode

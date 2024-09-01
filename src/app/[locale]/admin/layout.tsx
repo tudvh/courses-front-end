@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { AdminAuthProvider } from '@/contexts'
 import { LayoutProps } from '@/types'
 
 export const metadata: Metadata = {
@@ -9,7 +10,8 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout(props: LayoutProps) {
+export default async function AdminLayout(props: LayoutProps) {
   const { children } = props
-  return children
+
+  return <AdminAuthProvider>{children}</AdminAuthProvider>
 }

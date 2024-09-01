@@ -1,4 +1,4 @@
-import { Gauge, Package, Package2, TabletSmartphone, Users } from 'lucide-react'
+import { Gauge, Package, Package2, Users } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -13,7 +13,6 @@ const SIDEBAR_ITEMS = [
   { icon: Gauge, label: 'Dashboard', href: '/admin/dashboard' },
   { icon: Users, label: 'Người dùng', href: '/admin/users' },
   { icon: Package, label: 'Khóa học', href: '/admin/courses' },
-  { icon: TabletSmartphone, label: 'Sản phẩm', href: '/admin/products' },
 ]
 
 export const Sidebar = (props: SidebarProps) => {

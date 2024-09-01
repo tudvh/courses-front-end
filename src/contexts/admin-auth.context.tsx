@@ -4,14 +4,14 @@ import { destroyCookie, parseCookies, setCookie } from 'nookies'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { LoadingOverlay } from '@/components/ui'
-import { AuthService } from '@/services/api/admin'
+import { apiAdmin, AuthService } from '@/services/api/admin'
 import { LayoutProps } from '@/types'
 import { LoginPayload } from '@/types/admin'
 import { TAdminUser } from '@/types/admin-user'
 
 type TAdminAuthContext = {
   isAdminAuth: boolean
-  adminUserData: TAdminUser | null
+  adminUserData: TAdminUser
   login: (payload: LoginPayload) => Promise<void>
   logout: () => Promise<void>
 }
@@ -72,9 +72,27 @@ export const AdminAuthProvider = (props: LayoutProps) => {
     if (isAdminAuth && !adminUserData) {
       getProfile()
     }
-  }, [isAdminAuth])
+  }, [isAdminAuth, adminUserData])
 
-  if (isAdminAuth === undefined || adminUserData === undefined) {
+  // Auto remove authToken when authToken invalid
+  useEffect(() => {
+    const interceptor = apiAdmin.interceptors.response.use(
+      response => response,
+      error => {
+        const errorStatus = error.status ?? error.response?.status
+        if (errorStatus === 401) {
+          setIsAdminAuth(false)
+        }
+        return Promise.reject(error)
+      },
+    )
+
+    return () => {
+      apiAdmin.interceptors.response.eject(interceptor)
+    }
+  }, [])
+
+  if (isAdminAuth === undefined || !adminUserData) {
     return <LoadingOverlay open />
   }
 
