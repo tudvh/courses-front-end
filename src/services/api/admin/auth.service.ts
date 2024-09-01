@@ -1,5 +1,4 @@
 import { LoginPayload, LoginResponse } from '@/types/admin'
-
 import apiAdmin from './api-admin'
 
 const path = '/admin/auth'

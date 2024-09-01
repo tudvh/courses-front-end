@@ -1,5 +1,7 @@
-import { CircleUser, Menu } from 'lucide-react'
+import { CircleUser, LogOut, Menu } from 'lucide-react'
+import Image from 'next/image'
 
+import UserAvatarDefault from '@/assets/images/user-avatar-default.webp'
 import {
   Button,
   DropdownMenu,
@@ -18,6 +20,7 @@ import { Sidebar } from './sidebar'
 export const Header = () => {
   const { logout } = useAdminAuth()
   const { openLoading, closeLoading } = useLoading()
+  const { adminUserData } = useAdminAuth()
 
   const handleLogout = async () => {
     openLoading()
@@ -45,11 +48,23 @@ export const Header = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Đặng Văn Hoài Tú</DropdownMenuLabel>
+          <DropdownMenuLabel className="flex justify-between items-center gap-3">
+            <Image
+              src={UserAvatarDefault}
+              width={20}
+              height={20}
+              alt={`admin-${adminUserData.id}`}
+              className="rounded-full size-6 object-cover"
+            />
+            <span>
+              {adminUserData.firstName} {adminUserData.lastName}
+            </span>
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <button className="w-full" onClick={handleLogout}>
-              Logout
+            <button className="w-full flex gap-3" onClick={handleLogout}>
+              <LogOut size={16} />
+              <span>Đăng xuất</span>
             </button>
           </DropdownMenuItem>
         </DropdownMenuContent>

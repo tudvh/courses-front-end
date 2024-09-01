@@ -4,4 +4,4 @@ export const metadata: Metadata = {
   title: 'Người dùng',
 }
 
-export { default } from './users'
+export { default } from './users-list'

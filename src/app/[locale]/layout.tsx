@@ -4,7 +4,7 @@ import { getMessages } from 'next-intl/server'
 import { Roboto } from 'next/font/google'
 
 import { APP_CONFIG } from '@/constants'
-import { AdminAuthProvider, LoadingProvider } from '@/contexts'
+import { LoadingProvider } from '@/contexts'
 import '@/styles/globals.css'
 import { LayoutProps } from '@/types'
 
@@ -47,9 +47,7 @@ export default async function RootLayout(props: RootLayoutProps) {
     <html lang={locale}>
       <body className={roboto.className}>
         <NextIntlClientProvider messages={messages}>
-          <LoadingProvider>
-            <AdminAuthProvider>{children}</AdminAuthProvider>
-          </LoadingProvider>
+          <LoadingProvider>{children}</LoadingProvider>
         </NextIntlClientProvider>
       </body>
     </html>
